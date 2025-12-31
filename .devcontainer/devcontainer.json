@@ -1,14 +1,38 @@
 {
-    "name": "Python 3",
+    "name": "Python 3 with Node",
     "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
     "features": {
-        "ghcr.io/devcontainers/features/node:1": {}
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "20", // Update version
+            "npmVersion": "latest"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [ 
+                "ms-python.python", 
+              .
+)
+ Debug-mode suggestion-eslint.notes
+
+It seems the message got truncated earlier. Here are the adjusted recommendations and steps:
+
+### Adjusted `devcontainer.json` File:
+`````json name=.devcontainer/devcontainer.json
+{
+    "name": "Python 3 with Node",
+    "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "20" 
+        }
     },
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-python.python",
-                "ms-python.vscode-pylance"
+                "ms-python.vscode-pylance",
+                "esbenp.prettier-vscode" // Added Prettier for consistent formatting
             ]
         }
     },
