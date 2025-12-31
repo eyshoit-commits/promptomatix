@@ -130,11 +130,16 @@ The devcontainer automatically marks the workspace as a safe directory for Git o
 ### Virtual Environment Not Found
 If the virtual environment isn't created automatically:
 ```bash
+bash .devcontainer/setup.sh
+```
+
+Or manually:
+```bash
 python3 -m venv promptomatix_env
 source promptomatix_env/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
-python setup.py install
+pip install -e .
 ```
 
 ### Git Submodules Not Initialized
@@ -147,7 +152,7 @@ git submodule update --init --recursive
 source promptomatix_env/bin/activate
 pip install -r requirements.txt
 if [ -d "libs/dspy" ]; then pip install -e libs/dspy/; fi
-python setup.py install
+pip install -e .
 ```
 
 ## 📚 Additional Resources

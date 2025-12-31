@@ -91,7 +91,7 @@
     }
   },
 
-  "postCreateCommand": "bash -c 'git submodule update --init --recursive && python3 -m venv promptomatix_env && source promptomatix_env/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && if [ -d \"libs/dspy\" ]; then pip install -e libs/dspy/; fi && python setup.py install && echo \"✅ Promptomatix environment ready! Remember to activate: source promptomatix_env/bin/activate\"'",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
 
   "postAttachCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
 
