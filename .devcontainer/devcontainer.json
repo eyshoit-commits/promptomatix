@@ -1,40 +1,122 @@
 {
-    "name": "Python 3 with Node",
-    "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
-    "features": {
-        "ghcr.io/devcontainers/features/node:1": {
-            "version": "20", // Update version
-            "npmVersion": "latest"
-        }
-    },
-    "customizations": {
-        "vscode": {
-            "extensions": [ 
-                "ms-python.python", 
-              .
-)
- Debug-mode suggestion-eslint.notes
+  "name": "Cloud Code Crack (CCC) Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
 
-It seems the message got truncated earlier. Here are the adjusted recommendations and steps:
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "configureZshAsDefaultShell": true,
+      "upgradePackages": true,
+      "username": "vscode",
+      "userUid": "automatic",
+      "userGid": "automatic"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22",
+      "nodeGypDependencies": true,
+      "nvmVersion": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "installDockerBuildx": true,
+      "dockerDashComposeVersion": "v2",
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": true
+    },
+    "ghcr.io/devcontainers-contrib/features/apt-packages:1": {
+      "packages": "xdg-utils,pulseaudio,alsa-utils,libspeechd2,speech-dispatcher,espeak-ng"
+    }
+  },
 
-### Adjusted `devcontainer.json` File:
-`````json name=.devcontainer/devcontainer.json
-{
-    "name": "Python 3 with Node",
-    "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
-    "features": {
-        "ghcr.io/devcontainers/features/node:1": {
-            "version": "20" 
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-typescript-next",
+        "dsznajder.es7-react-js-snippets",
+        "bradlc.vscode-tailwindcss",
+        "ms-azuretools.vscode-docker",
+        "ms-vscode-remote.remote-containers",
+        "github.vscode-pull-request-github",
+        "eamodio.gitlens",
+        "visualstudioexptteam.vscodeintellicode",
+        "christian-kohler.path-intellisense",
+        "streetsidesoftware.code-spell-checker",
+        "redhat.vscode-yaml",
+        "ZainChen.json",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "MS-CEINTL.vscode-language-pack-de",
+        "ms-vscode.vscode-speech-language-pack-de-de"
+      ],
+      "settings": {
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "typescript.enablePromptUseWorkspaceTsdk": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+        "files.associations": {
+          "*.json": "jsonc"
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true,
+          "editor.formatOnPaste": true
+        },
+        "[jsonc]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.formatOnSave": true,
+          "editor.formatOnPaste": true
         }
+      }
+    }
+  },
+
+  "forwardPorts": [3000, 3456, 5173, 8080],
+  "portsAttributes": {
+    "3000": {
+      "label": "CCC Server",
+      "onAutoForward": "notify"
     },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-python.python",
-                "ms-python.vscode-pylance",
-                "esbenp.prettier-vscode" // Added Prettier for consistent formatting
-            ]
-        }
+    "3456": {
+      "label": "CCC UI",
+      "onAutoForward": "openBrowser"
     },
-    "postCreateCommand": "pip install --user -e . && python -m nltk.downloader punkt averaged_perceptron_tagger wordnet"
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "Preview Server",
+      "onAutoForward": "ignore"
+    }
+  },
+
+  "postCreateCommand": "npm install -g pnpm && pnpm config set enable-pre-post-scripts true && printf 'allowBuilds:\n  \"@tailwindcss/oxide\": true\n  esbuild: true\n' > pnpm-workspace.yaml && pnpm install && cd ui && pnpm install",
+
+  "postAttachCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+
+  "remoteUser": "vscode",
+
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly,type=bind,consistency=cached"
+  ],
+
+  "containerEnv": {
+    "NODE_ENV": "development"
+  }
 }
