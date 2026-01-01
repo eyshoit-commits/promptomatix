@@ -14,8 +14,7 @@ async fn main() -> Result<()> {
         .with_max_level(Level::INFO)
         .finish();
 
-    tracing::subscriber::set_global_default(subscriber)
-        .expect("Failed to set tracing subscriber");
+    tracing::subscriber::set_global_default(subscriber).expect("Failed to set tracing subscriber");
 
     info!("Sandbox MCP Server v{}", VERSION);
     info!("Rebranded from sandbox-mco - Rust implementation");

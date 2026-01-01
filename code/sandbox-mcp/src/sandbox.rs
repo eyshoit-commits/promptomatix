@@ -95,7 +95,10 @@ impl Sandbox {
                 )));
             }
             Err(_) => {
-                warn!("Command timed out after {} seconds", self.config.max_execution_time);
+                warn!(
+                    "Command timed out after {} seconds",
+                    self.config.max_execution_time
+                );
                 return Err(Error::SandboxExecution(format!(
                     "Command timed out after {} seconds",
                     self.config.max_execution_time
