@@ -1,5 +1,5 @@
 [package]
-name = "sandbox-mcp"
+name = "sandbox-rust-mcp"
 version = "0.1.0"
 edition = "2021"
 authors = ["Promptomatix Contributors"]
@@ -17,9 +17,9 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 async-trait = "0.1"
 
 [lib]
-name = "sandbox_mcp"
+name = "sandbox_rust_mcp"
 path = "src/lib.rs"
 
 [[bin]]
-name = "sandbox-mcp"
+name = "sandbox-rust-mcp"
 path = "src/main.rs"

@@ -1,4 +1,4 @@
-//! Sandbox MCP (Model Context Protocol) Server
+//! Sandbox Rust MCP (Model Context Protocol) Server
 //!
 //! This is a Rust implementation of a Model Context Protocol server with sandboxed execution capabilities.
 //! Rebranded and refactored from the original sandbox-mco implementation.

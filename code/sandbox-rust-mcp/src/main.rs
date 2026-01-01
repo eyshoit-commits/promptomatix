@@ -1,9 +1,9 @@
-//! Sandbox MCP Server - Main Entry Point
+//! Sandbox Rust MCP Server - Main Entry Point
 //!
 //! Rust implementation of the Model Context Protocol (MCP) sandbox server.
 //! Rebranded and refactored from sandbox-mco.
 
-use sandbox_mcp::{Config, McpServer, Result, VERSION};
+use sandbox_rust_mcp::{Config, McpServer, Result, VERSION};
 use tracing::{info, Level};
 use tracing_subscriber::FmtSubscriber;
 
@@ -16,7 +16,7 @@ async fn main() -> Result<()> {
 
     tracing::subscriber::set_global_default(subscriber).expect("Failed to set tracing subscriber");
 
-    info!("Sandbox MCP Server v{}", VERSION);
+    info!("Sandbox Rust MCP Server v{}", VERSION);
     info!("Rebranded from sandbox-mco - Rust implementation");
 
     // Load configuration

@@ -1,12 +1,12 @@
-# Sandbox MCP (Model Context Protocol)
+# Sandbox Rust MCP (Model Context Protocol)
 
 **Rust implementation of the Model Context Protocol sandbox server**
 
-Rebranded and refactored from `sandbox-mco` to `sandbox-mcp` with improved architecture and implementation.
+Rebranded and refactored from `sandbox-mco` to `sandbox-rust-mcp` with improved architecture and implementation.
 
 ## Overview
 
-Sandbox MCP is a secure, isolated execution environment for running code and commands through the Model Context Protocol (MCP). It provides:
+Sandbox Rust MCP is a secure, isolated execution environment for running code and commands through the Model Context Protocol (MCP). It provides:
 
 - **Isolated Execution**: Sandboxed command execution with configurable limits
 - **MCP Protocol Support**: Full implementation of the Model Context Protocol
@@ -61,8 +61,8 @@ Built on Tokio for:
 ### Build from Source
 
 ```bash
-# Navigate to the sandbox-mcp directory
-cd code/sandbox-mcp
+# Navigate to the sandbox-rust-mcp directory
+cd code/sandbox-rust-mcp
 
 # Build the project
 cargo build --release
@@ -83,7 +83,7 @@ cargo run --release
 cargo run --release
 
 # Or run the compiled binary
-./target/release/sandbox-mcp
+./target/release/sandbox-rust-mcp
 ```
 
 ### Configuration
@@ -91,7 +91,7 @@ cargo run --release
 The server can be configured programmatically:
 
 ```rust
-use sandbox_mcp::{Config, McpServer};
+use sandbox_rust_mcp::{Config, McpServer};
 
 let config = Config::default()
     .with_host("0.0.0.0".to_string())
@@ -108,14 +108,14 @@ let server = McpServer::new(config);
 - **Port**: `8080`
 - **Max Execution Time**: `30 seconds`
 - **Max Memory**: `512 MB`
-- **Work Directory**: `/tmp/sandbox-mcp`
+- **Work Directory**: `/tmp/sandbox-rust-mcp`
 
 ## API Examples
 
 ### Execute a Command
 
 ```rust
-use sandbox_mcp::{Sandbox, ExecutionRequest, Config};
+use sandbox_rust_mcp::{Sandbox, ExecutionRequest, Config};
 use std::collections::HashMap;
 
 #[tokio::main]
@@ -138,7 +138,7 @@ async fn main() {
 ### Handle MCP Messages
 
 ```rust
-use sandbox_mcp::{McpServer, McpMessage, ExecutionRequest, Config};
+use sandbox_rust_mcp::{McpServer, McpMessage, ExecutionRequest, Config};
 use std::collections::HashMap;
 
 #[tokio::main]
@@ -204,7 +204,7 @@ cargo udeps
 
 This is a refactored and rebranded version of `sandbox-mco`. Key changes:
 
-1. **Name**: `sandbox-mco` → `sandbox-mcp` (Model Context Protocol)
+1. **Name**: `sandbox-mco` → `sandbox-rust-mcp` (Rust-based Model Context Protocol)
 2. **Language**: Python/TypeScript → Rust
 3. **Architecture**: Improved modular design
 4. **Performance**: Better async handling with Tokio
@@ -239,7 +239,7 @@ Apache License 2.0 - See LICENSE.txt for details
 
 ### v0.1.0 (Current)
 - Initial Rust implementation
-- Rebrand from sandbox-mco to sandbox-mcp
+- Rebrand from sandbox-mco to sandbox-rust-mcp
 - Core MCP protocol support
 - Sandbox execution engine
 - Async/await throughout

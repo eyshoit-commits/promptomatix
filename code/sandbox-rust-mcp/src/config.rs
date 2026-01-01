@@ -32,7 +32,7 @@ impl Default for Config {
             port: 8080,
             max_execution_time: 30,
             max_memory_mb: 512,
-            work_dir: PathBuf::from("/tmp/sandbox-mcp"),
+            work_dir: PathBuf::from("/tmp/sandbox-rust-mcp"),
             verbose: false,
         }
     }
